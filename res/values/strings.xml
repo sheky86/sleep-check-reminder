@@ -7,7 +7,7 @@
 <b>About</b>
 <br/>
 <br/>
-This application will help you to build a habit of reminding yourself to check if you are sleeping or not.
+This application will help you to build a habit of reminding yourself to check if you are sleeping or not, or if sleeping to remind yourself that you are in dream.
 With such habit in place one can remember to make a check while sleeping and realize that he or she is sleeping. By doing so one can increase chances of falling into <b>lucid dreaming</b>.
 <br/>
 <br/>
@@ -17,7 +17,7 @@ Application provides collection of great tips about reality checks and <b>lucid 
 Using <b>random</b> length time periods prevents you from being prepared for notification. Use <b>fixed</b> length time periods to follow your rhythm of sleep.
 <br/>
 <br/>    
-<b>Background sound</b> is useful to remind you thru dream without waking you up. Choose sound which suits you and adjust <b>volume</b> so that you don\'t wake up. You can use it also during a day to create <b>sub-conscious connection</b> between specific sound and intention.
+<b>Background sound</b> is useful to remind you through dream without waking you up. Choose sound which suits you and adjust <b>volume</b> so that you don\'t wake up. You can use it also during a day to create <b>sub-conscious connection</b> between specific sound and intention.
 	]]></string>
 	<string-array name="tips">
 		<item>Perform some simple tasks that rely on basic physics and logic. As you do them, consciously ask yourself if you are awake or dreaming.</item>
@@ -75,11 +75,30 @@ Using <b>random</b> length time periods prevents you from being prepared for not
 		<item>Knock at the door</item>
 		<item>Radar signal</item>
 		<item>Sonar sound</item>
+        <item>Busy tone</item>
+        <item>Pager beeps</item>
+        <item>Beep 1</item>
+        <item>Beep 2</item>
+        <item>Beep 3</item>
+        <item>Beep 4</item>
+        <item>Beep 5</item>
+        <item>Beep 6</item>
+        <item>Beep 7</item>
+
 	</string-array>
 
 	<string-array name="background_sound_entryvalues">
 		<item>knock_at_the_door</item>
 		<item>radar_signal</item>
 		<item>sonar_sound</item>
+        <item>busy_tone</item>
+        <item>pager_beeps</item>
+        <item>beep1</item>
+        <item>beep2</item>
+        <item>beep3</item>
+        <item>beep4</item>
+        <item>beep5</item>
+        <item>beep6</item>
+        <item>beep7</item>
 	</string-array>
 </resources>
