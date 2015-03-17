@@ -1,16 +1,18 @@
 package com.ropez.android.sleepcheckreminder;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
-import android.os.Binder;
 import android.os.IBinder;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+
+
 
 public class SoundPlayerService extends Service {
 
@@ -18,12 +20,18 @@ public class SoundPlayerService extends Service {
 	private float mMaxVolume;
 	private long mStart;
 	
-	private Timer mTimer = new Timer(); 
-	
+	private Timer mTimer = new Timer();
+
+
+
+
+
+
     @Override
     public void onCreate() {
         Log.i("SoundPlayerService.onCreate");
         this.mTimer = new Timer();
+
     }
     
     TimerTask timerTask = new TimerTask() {
@@ -52,7 +60,8 @@ public class SoundPlayerService extends Service {
         Log.i("SoundPlayerService.onStartCommand(" + startId + ")");
         
         String action = intent.getStringExtra("action");
-        
+
+
         if (action.compareTo("start") == 0) {
         	Log.i("SoundPlayerService.onStartCommand.start");
         	
@@ -65,7 +74,11 @@ public class SoundPlayerService extends Service {
 			this.mMediaPlayer = MediaPlayer.create(this, soundResourceId);
 			this.mMediaPlayer.setVolume(0, 0);
 			this.mMediaPlayer.setScreenOnWhilePlaying(false);
-			this.mMediaPlayer.setLooping(true);
+
+
+            this.mMediaPlayer.setLooping(false);
+
+
 			this.mMediaPlayer.start();
 			
 			this.mTimer.scheduleAtFixedRate(this.timerTask, 200, 200);
