@@ -8,9 +8,9 @@
 		
 		<CheckBoxPreference
             android:key="notification_on"
-            android:title="Run during a day"
-            android:summaryOff="No, disable it"
-            android:summaryOn="Yes, enable it" />
+            android:title="Run during a day or night"
+            android:summaryOff="Disabled"
+            android:summaryOn="Enabled" />
 		
 		<TimePickerPreference
 			android:key="start_at_timepicker"
@@ -37,7 +37,7 @@
 
 		<com.hlidskialf.android.preference.SeekBarPreference 
 			android:key="times_per_day_slider"
-	        android:title="Times per day"
+	        android:title="Times per day or night"
 	        android:dialogMessage="Amount of random length periods"
 	        android:defaultValue="5"
 	        android:text=" times"
@@ -69,16 +69,22 @@
 		
 		<ListPreference
             android:key="background_sound"
-            android:title="Background sound"
+            android:title="Sound"
             android:entries="@array/background_sound_entries"
             android:entryValues="@array/background_sound_entryvalues"
-            android:dialogTitle="Background sound" />
+            android:dialogTitle="Sound" />
+<!--
+        <ListPreference
+            android:key="select_background_sound"
+            android:title="Select sound"
+            android:dialogTitle="Sound" />
+            -->
 
 		<com.hlidskialf.android.preference.SeekBarPreference 
 			android:key="volume_slider"
 	        android:title="Volume"
 	        android:dialogMessage="Volume"
-	        android:defaultValue="50"
+	        android:defaultValue="75"
 	        android:text="%"
 	        min="1"
 	        android:max="100" />
