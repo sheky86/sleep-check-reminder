@@ -19,7 +19,10 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.RingtonePreference;
 import android.preference.TimePickerPreference;
+import android.service.media.MediaBrowserService;
 import android.util.Log;
+import android.media.browse.MediaBrowser;
+
 
 public class PreferenceScreen extends PreferenceActivity {
 	
@@ -29,6 +32,7 @@ public class PreferenceScreen extends PreferenceActivity {
 	PreferenceCategory mNotificationCategory;
     ListPreference mNotificationMode;
     ListPreference mBackgroundSound;
+    //CheckBoxPreference mLoopSoundStatus;
     SeekBarPreference mVolume;
     RingtonePreference mAlarm;
     PreferenceCategory mTimingCategory;
@@ -36,7 +40,8 @@ public class PreferenceScreen extends PreferenceActivity {
     TimePickerPreference mFinishAt;
 	ListPreference mRepeatMode;
 	SeekBarPreference mTimesPerDay;
-    SeekBarPreference mPeriodLength;    
+    SeekBarPreference mPeriodLength;
+    MediaBrowserService mBrowseFile;
     
     HashMap<String, String> mPreferenceValues;
 	
@@ -118,6 +123,7 @@ public class PreferenceScreen extends PreferenceActivity {
         this.mNotificationCategory = (PreferenceCategory)getPreferenceScreen().findPreference("notification");
         this.mNotificationMode = (ListPreference)findPreference("notification_mode");
         this.mBackgroundSound = (ListPreference)findPreference("background_sound");
+        //this.mLoopSoundStatus = (CheckBoxPreference)findPreference("background_sound_loop_on");
         this.mVolume = (SeekBarPreference)findPreference("volume_slider");
         this.mAlarm = (RingtonePreference)findPreference("alarm");
         this.mTimingCategory = (PreferenceCategory)getPreferenceScreen().findPreference("timing");
@@ -126,10 +132,11 @@ public class PreferenceScreen extends PreferenceActivity {
         this.mRepeatMode = (ListPreference)findPreference("repeat_mode");
         this.mTimesPerDay = (SeekBarPreference)findPreference("times_per_day_slider");
         this.mPeriodLength = (SeekBarPreference)findPreference("period_length_slider");
-        
+
         this.mNotificationStatus.setOnPreferenceChangeListener(genericOnPreferenceChangeListener);
         this.mNotificationMode.setOnPreferenceChangeListener(genericOnPreferenceChangeListener);
         this.mBackgroundSound.setOnPreferenceChangeListener(backgroundSoundOnPreferenceChangeListener);
+        //this.mLoopSoundStatus.setOnPreferenceChangeListener(genericOnPreferenceChangeListener);
         this.mVolume.setOnPreferenceChangeListener(volumeOnPreferenceChangeListener);
         this.mAlarm.setOnPreferenceChangeListener(genericOnPreferenceChangeListener);
         this.mStartAt.setOnPreferenceChangeListener(genericOnPreferenceChangeListener);
@@ -141,6 +148,7 @@ public class PreferenceScreen extends PreferenceActivity {
         this.mPreferenceValues.put(this.mNotificationStatus.getKey(), Boolean.toString(this.mNotificationStatus.isChecked()));
         this.mPreferenceValues.put(this.mNotificationMode.getKey(), this.mNotificationMode.getValue());
         this.mPreferenceValues.put(this.mBackgroundSound.getKey(), this.mBackgroundSound.getValue());
+        //this.mPreferenceValues.put(this.mLoopSoundStatus.getKey(), Boolean.toString(this.mLoopSoundStatus.isChecked()));
         this.mPreferenceValues.put(this.mVolume.getKey(), Integer.toString(this.mVolume.getProgress()));
         SharedPreferences sharedPreferences = this.mAlarm.getPreferenceManager().getSharedPreferences();
         this.mPreferenceValues.put(this.mAlarm.getKey(), sharedPreferences.getString(this.mAlarm.getKey(), null));
@@ -170,6 +178,7 @@ public class PreferenceScreen extends PreferenceActivity {
 		if (notificationMode == 0) { // Notification
 			this.mBackgroundSound.setEnabled(false);
 			this.mAlarm.setEnabled(false);
+            //this.mLoopSoundStatus.setEnabled(false);
 			this.mVolume.setEnabled(false);
 			//this.mNotificationCategory.removePreference(this.mBackgroundSound);
 			//this.mNotificationCategory.removePreference(this.mAlarm);
@@ -179,6 +188,7 @@ public class PreferenceScreen extends PreferenceActivity {
 		if (notificationMode == 1) { // Background
 			this.mBackgroundSound.setEnabled(true);
 			this.mAlarm.setEnabled(false);
+            //this.mLoopSoundStatus.setEnabled(true);
 			this.mVolume.setEnabled(true);
 			//this.mNotificationCategory.removePreference(this.mAlarm);
 			//this.mNotificationCategory.addPreference(this.mBackgroundSound);
@@ -188,6 +198,7 @@ public class PreferenceScreen extends PreferenceActivity {
 		if (notificationMode == 2) { // Alarm
 			this.mBackgroundSound.setEnabled(false);
 			this.mAlarm.setEnabled(true);
+            //this.mLoopSoundStatus.setEnabled(false);
 			this.mVolume.setEnabled(false);
 			//this.mNotificationCategory.removePreference(this.mBackgroundSound);
 			//this.mNotificationCategory.removePreference(this.mVolume);
